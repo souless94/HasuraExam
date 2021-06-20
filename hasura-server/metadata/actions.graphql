@@ -1,0 +1,56 @@
+type Mutation {
+  createUser (
+    credentials: SignUpCredentials!
+  ): UserObject
+}
+
+
+type Mutation {
+  deleteUser (
+    username: String!
+  ): DeletedResponse
+}
+
+
+type Mutation {
+  login (
+    credentials: Credentials!
+  ): LoginResponse
+}
+
+
+
+
+input Credentials {
+  email : String!
+  password : String!
+}
+
+input SignUpCredentials {
+  email : String!
+  password : String!
+  userType : String!
+}
+
+type LoginResponse {
+  id : String!
+  accessToken : String!
+}
+
+type UserObject {
+  id : String!
+  email : String!
+  displayName : String!
+  hashedPassword : String!
+  userType : String!
+}
+
+type DeletedResponse {
+  ok : String!
+}
+
+type Users {
+  username : String!
+  email : String!
+}
+

@@ -1,0 +1,39 @@
+- table:
+    schema: public
+    name: AppUsers
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - displayName
+      - email
+      - role
+      - username
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: Courses
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+      - description
+      - title
+      - uploadedby
+      - url
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - description
+      - id
+      - title
+      - updated_at
+      - uploadedby
+      - url
+      filter: {}
+      allow_aggregations: true

@@ -1,0 +1,147 @@
+<section class="course-section">
+  <h1 class="signup-heading">Create Course</h1>
+  <form class="signup-form" [formGroup]="form" (submit)="onCourseCreate()">
+    <mat-form-field>
+      <mat-label>title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        name="title"
+        type="text"
+      /> </mat-form-field
+    >&nbsp;&nbsp;&nbsp;
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" type="text" />
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url" type="text" />
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <button
+      mat-flat-button
+      [disabled]="form.invalid"
+      color="primary"
+      type="submit"
+    >
+      Create
+    </button>
+  </form>
+
+  <h1 class="signup-heading">Update &#47; Delete Course</h1>
+  <p>update will change every value in the submission</p>
+  <form
+    class="signup-form"
+    [formGroup]="deleteUpdateForm"
+    (submit)="onCourseChange()"
+  >
+    <mat-form-field>
+      <mat-label>id</mat-label>
+      <input
+        matInput
+        formControlName="id"
+        name="id"
+        type="text"
+      /> </mat-form-field
+    >&nbsp;&nbsp;&nbsp;
+    <mat-form-field>
+      <mat-label>title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        name="title"
+        type="text"
+      /> </mat-form-field
+    >&nbsp;&nbsp;&nbsp;
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" type="text" />
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url" type="text" />
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <button
+      mat-flat-button
+      [disabled]="deleteUpdateForm.invalid"
+      color="primary"
+      type="submit"
+      (click)="toupdate = true"
+    >
+      update
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button
+      mat-flat-button
+      [disabled]="deleteUpdateForm.invalid"
+      color="warn"
+      type="submit"
+      (click)="todelete = true"
+    >
+      delete
+    </button>
+  </form>
+
+  <mat-form-field class="filter">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Type here to filter"
+      #input
+    />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>title</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef>url</th>
+      <td mat-cell *matCellDef="let element">{{ element.url }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>description</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="uploadedby">
+      <th mat-header-cell *matHeaderCellDef>uploadedby</th>
+      <td mat-cell *matCellDef="let element">{{ element.uploadedby }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="updated_at">
+      <th mat-header-cell *matHeaderCellDef>updatedat</th>
+      <td mat-cell *matCellDef="let element">{{ element.updated_at }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+</section>

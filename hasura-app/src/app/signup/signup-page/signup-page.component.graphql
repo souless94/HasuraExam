@@ -1,0 +1,43 @@
+mutation Signup($email: String!, $password: String!, $userType: String!) {
+  createUser(
+    credentials: { email: $email, password: $password, userType: $userType }
+  ) {
+    id
+    email
+    displayName
+    hashedPassword
+    userType
+  }
+}
+
+mutation CreateUser(
+  $id: String!
+  $email: String!
+  $displayName: String!
+  $hashedPassword: String!
+  $userType: String!
+) {
+  insert_AppUsers_one(
+    object: {
+      id: $id
+      username: $id
+      email: $email
+      displayName: $id
+      hashedPassword: $hashedPassword
+      role: $userType
+    }
+  ) {
+    displayName
+    email
+    role
+  }
+}
+
+mutation deleteUser($username: String!) {
+  deleteUser(username: $username) {
+    ok
+  }
+  delete_AppUsers_by_pk(id: $username) {
+    id
+  }
+}

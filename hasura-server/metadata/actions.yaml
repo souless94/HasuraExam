@@ -1,0 +1,28 @@
+actions:
+- name: createUser
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:8000/api/createUser/
+    forward_client_headers: true
+- name: deleteUser
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:8000/api/deleteUser/
+    forward_client_headers: true
+- name: login
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal.:8000/api/login/
+  permissions:
+  - role: anonymous
+custom_types:
+  enums: []
+  input_objects:
+  - name: Credentials
+  - name: SignUpCredentials
+  objects:
+  - name: LoginResponse
+  - name: UserObject
+  - name: DeletedResponse
+  - name: Users
+  scalars: []

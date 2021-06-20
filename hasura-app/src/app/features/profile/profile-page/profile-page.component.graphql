@@ -1,0 +1,14 @@
+query GetProfile($id: String!) {
+  AppUsers_by_pk(id: $id) {
+    email
+    username
+    displayName
+    role
+  }
+}
+
+query GetProfiles {
+  AppUsers {
+    id
+  }
+}

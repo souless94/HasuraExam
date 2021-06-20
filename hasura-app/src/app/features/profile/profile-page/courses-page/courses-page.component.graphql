@@ -1,0 +1,61 @@
+mutation uploadCourse(
+  $title: String!
+  $description: String!
+  $url: String!
+  $uploadedby: String!
+) {
+  insert_Courses_one(
+    object: {
+      title: $title
+      description: $description
+      url: $url
+      uploadedby: $uploadedby
+    }
+  ) {
+    id
+    title
+    url
+    description
+    uploadedby
+    updated_at
+  }
+}
+
+query getCourses {
+  Courses {
+    id
+    title
+    url
+    uploadedby
+    description
+    updated_at
+  }
+}
+
+query getCourseCount {
+  Courses_aggregate {
+    aggregate {
+      count(columns: url)
+    }
+  }
+}
+
+mutation deleteCourse($id: bigint!) {
+  delete_Courses_by_pk(id: $id) {
+    title
+  }
+}
+
+mutation updateCourse(
+  $id: bigint!
+  $title: String
+  $description: String
+  $url: String
+) {
+  update_Courses_by_pk(
+    pk_columns: { id: $id }
+    _set: { title: $title, description: $description, url: $url }
+  ) {
+    title
+  }
+}

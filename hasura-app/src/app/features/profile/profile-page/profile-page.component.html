@@ -1,0 +1,50 @@
+<mat-drawer-container
+  class="example-container"
+  autosize
+  *ngIf="this.profile$ | async as profile"
+>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-nav-list>
+      <p mat-list-item>
+        Id
+        <mat-chip color="primary" selected>{{ profile.displayName }}</mat-chip>
+      </p>
+      <p mat-list-item>
+        Email <mat-chip color="primary" selected>{{ profile.email }}</mat-chip>
+      </p>
+      <p mat-list-item>
+        Role <mat-chip color="primary" selected>{{ profile.role }}</mat-chip>
+      </p>
+      <mat-divider></mat-divider>
+      <p mat-list-item>Features</p>
+      <a
+        mat-list-item
+        *ngIf="this.profile.role == 'admin'"
+        (click)="createUsers = true; drawer.toggle()"
+      >
+        User Management
+      </a>
+      <a mat-list-item (click)="createUsers = false; drawer.toggle()">
+        Courses</a
+      >
+      <a mat-button color="primary" (click)="logout()"> Logout</a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>list</mat-icon>
+      </button>
+    </div>
+
+    <div class="content-container">
+      <div *ngIf="createUsers && this.profile.role == 'admin'">
+        <app-signup-page></app-signup-page>
+      </div>
+      <div *ngIf="!createUsers">
+        <app-courses-page></app-courses-page>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

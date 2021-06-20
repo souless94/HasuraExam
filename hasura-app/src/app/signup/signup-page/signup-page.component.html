@@ -1,0 +1,78 @@
+<section>
+  <h1 class="signup-heading">Delete Users</h1>
+  <form class="signup-form" [formGroup]="deleteForm" (submit)="onDelete()">
+    <mat-form-field *ngIf="this.profiles$ | async as profiles">
+      <mat-label>Username</mat-label>
+      <input
+        type="text"
+        placeholder="Select User to be deleted"
+        name="username"
+        matInput
+        formControlName="username"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option [value]="profile.id" *ngFor="let profile of profiles">{{
+          profile.id
+        }}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <button
+      mat-flat-button
+      [disabled]="deleteForm.invalid"
+      color="primary"
+      type="submit"
+    >
+      Delete User
+    </button>
+  </form>
+</section>
+<br />
+<mat-divider></mat-divider>
+<br />
+<section>
+  <h1 class="signup-heading">Create Users</h1>
+  <form class="signup-form" [formGroup]="form" (submit)="onSubmit()">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" name="email" type="email" />
+        </mat-form-field>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            placeholder="Min 6 chars"
+            type="password"
+          />
+        </mat-form-field>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="userType" name="userType" type="text">
+            <mat-option value="user">user</mat-option>
+            <mat-option value="admin">admin</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button
+          mat-flat-button
+          [disabled]="form.invalid"
+          color="primary"
+          type="submit"
+        >
+          Sign Up
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </form>
+</section>

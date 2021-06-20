@@ -1,0 +1,36 @@
+
+
+
+<section class="login-section">
+  <h1 class="signup-heading">Sign In</h1>
+  <form class="signup-form" [formGroup]="form" (submit)="onSubmit()">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <mat-form-field class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" name="email" type="email" />
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item role="listitem"
+        ><mat-form-field class="form-field">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+          /> </mat-form-field
+      ></mat-list-item>
+
+      <mat-list-item role="listitem">
+        <button
+          mat-flat-button
+          [disabled]="form.invalid"
+          color="primary"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </form>
+</section>

@@ -1,0 +1,25 @@
+.course-section {
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+table {
+    width: 80%;
+    table-layout: fixed;
+}
+
+th,
+td {
+    overflow-wrap: break-word;
+    width: 100px;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+}
+
+.filter {
+    width: 30%;
+}

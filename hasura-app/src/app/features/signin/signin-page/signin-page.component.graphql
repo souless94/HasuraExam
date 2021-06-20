@@ -1,0 +1,12 @@
+mutation Signin($email: String!, $password: String!) {
+  login(credentials: { email: $email, password: $password }) {
+    id
+    accessToken
+  }
+}
+
+query GetProfiles {
+  AppUsers {
+    id
+  }
+}
